@@ -6,13 +6,7 @@ server.use(express.json());
 
 
 // variaveis globais
-const projects=[
-  {
-    id: 0,
-    title: "Novo projeto",
-    tasks: ["Nova tarefa"]
-  }
-];
+const projects=[];
 let countAcess=0;
 
 //Middlewares
