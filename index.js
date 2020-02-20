@@ -26,6 +26,14 @@ server.post('/projects',(req,res)=>{
     "projects":projects,
   })
 });
+// Criar e armazena novas tarefas no projeto de if informado
+server.post('/projects/:id/tasks',(req,res)=>{
+  projects[req.params.id].tasks.push(req.body.title);
+  return res.json({
+    "message":"Tarefa criada com sucesso",
+    "project":projects[req.params.id],
+  })
+});
 
 //Read
 //Retorna todos os usuarios
@@ -34,6 +42,7 @@ server.get('/projects',(req,res)=>{
 });
 
 //Update
+//Atualiza o titulo do projeto com o id informado
 server.put('/projects/:id',(req,res)=>{
   projects[req.params.id].title = req.body.title;
   return res.json({
@@ -42,6 +51,7 @@ server.put('/projects/:id',(req,res)=>{
   })
 });
 //Delete
+//Apaga o projeto com id informado
 server.delete('/projects/:id',(req,res)=>{
   projects.splice(req.params.id, 1);
   return res.json({
