@@ -22,7 +22,7 @@ server.post('/projects',(req,res)=>{
   }
   projects.push(project);
   return res.json({
-    "message":"projeto criado com sucesso",
+    "message":"Projeto criado com sucesso",
     "projects":projects,
   })
 });
@@ -34,7 +34,13 @@ server.get('/projects',(req,res)=>{
 });
 
 //Update
-
+server.put('/projects/:id',(req,res)=>{
+  projects[req.params.id].title = req.body.title;
+  return res.json({
+    "message":"Projeto atualizado com sucesso",
+    "projects":projects,
+  })
+});
 //Delete
 
 
