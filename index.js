@@ -21,6 +21,27 @@ server.use((req,res,next)=>{
 console.log(`numero de requisiçoes ao servidor:${++countAcess}`);
 next();
 });
+//Especificos
+function projectExists(req,res,next){
+  const project = projects[req.params.id];
+  if(project){
+    next();
+  }else{
+    return res.status(400).json({
+      "message":"Nao  existe um projeto com o id informado"
+    })
+  }
+};
+function titleIsInformed(req,res,next){
+  req.title = req.body.title
+  if(req.title){
+    next();
+  }else{
+    return res.status(400).json({
+      "message":"É necessario informar um titulo"
+    })
+  }
+};
 
 //CRUD
 //Create
@@ -37,24 +58,22 @@ server.post('/projects',(req,res)=>{
   })
 });
 // Criar e armazena novas tarefas no projeto de if informado
-server.post('/projects/:id/tasks',(req,res)=>{
-  projects[req.params.id].tasks.push(req.body.title);
+server.post('/projects/:id/tasks',projectExists,titleIsInformed,(req,res)=>{
+  projects[req.params.id].tasks.push(req.title);
   return res.json({
     "message":"Tarefa criada com sucesso",
     "project":projects[req.params.id],
   })
 });
-
 //Read
 //Retorna todos os usuarios
 server.get('/projects',(req,res)=>{
   return res.json(projects);
 });
-
 //Update
 //Atualiza o titulo do projeto com o id informado
-server.put('/projects/:id',(req,res)=>{
-  projects[req.params.id].title = req.body.title;
+server.put('/projects/:id',projectExists,titleIsInformed,(req,res)=>{
+  projects[req.params.id].title = req.title;
   return res.json({
     "message":"Projeto atualizado com sucesso",
     "projects":projects,
@@ -62,7 +81,7 @@ server.put('/projects/:id',(req,res)=>{
 });
 //Delete
 //Apaga o projeto com id informado
-server.delete('/projects/:id',(req,res)=>{
+server.delete('/projects/:id',projectExists,(req,res)=>{
   projects.splice(req.params.id, 1);
   return res.json({
     "message":"Projeto deletado com sucesso",
