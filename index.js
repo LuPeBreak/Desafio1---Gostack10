@@ -4,6 +4,8 @@ const server = express();
 
 server.use(express.json());
 
+
+// variaveis globais
 const projects=[
   {
     id: 0,
@@ -11,6 +13,14 @@ const projects=[
     tasks: ["Nova tarefa"]
   }
 ];
+let countAcess=0;
+
+//Middlewares
+//Globais
+server.use((req,res,next)=>{
+console.log(`numero de requisiçoes ao servidor:${++countAcess}`);
+next();
+});
 
 //CRUD
 //Create
