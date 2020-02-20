@@ -42,6 +42,12 @@ server.put('/projects/:id',(req,res)=>{
   })
 });
 //Delete
-
+server.delete('/projects/:id',(req,res)=>{
+  projects.splice(req.params.id, 1);
+  return res.json({
+    "message":"Projeto deletado com sucesso",
+    "projects":projects,
+  })
+});
 
 server.listen(3000);
