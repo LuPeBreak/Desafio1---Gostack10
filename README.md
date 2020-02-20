@@ -4,7 +4,7 @@
 **Desafio :** Crie uma aplicação para armazenar projetos e suas tarefas do zero utilizando Express.
 
 
-![](https://img.shields.io/github/stars/LuPeBreak/Desafio1---Gostack10) ![](https://img.shields.io/github/forks/LuPeBreak/Desafio1---Gostack10) ![]](https://img.shields.io/github/issues/LuPeBreak/Desafio1---Gostack10)
+![](https://img.shields.io/github/stars/LuPeBreak/Desafio1---Gostack10) ![](https://img.shields.io/github/forks/LuPeBreak/Desafio1---Gostack10) ![](https://img.shields.io/github/issues/LuPeBreak/Desafio1---Gostack10)
 
 ### Como testar o projeto
 
